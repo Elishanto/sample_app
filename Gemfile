@@ -10,6 +10,7 @@ gem 'turbolinks'
 gem 'jbuilder'
 gem 'sdoc', group: :doc
 gem 'bootstrap-sass'
+gem 'bcrypt'
 
 group :test do
   gem 'selenium-webdriver'
