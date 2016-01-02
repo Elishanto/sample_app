@@ -11,10 +11,7 @@
 <%= render 'layouts/header' %>
 <div class="container">
   <% flash.each do |type, message| %>
-      <div class="alert <%= bootstrap_class_for(type) %> fade in">
-        <button class="close" data-dismiss="alert">×</button>
-        <%= message %>
-      </div>
+      <%= content_tag(:div, "<button class='close' data-dismiss='alert'>×</button> #{message}".html_safe, class: "alert #{bootstrap_class_for(type)} fade in") %>
   <% end %>
   <%= yield %>
   <%= render 'layouts/footer' %>
