@@ -9,6 +9,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder'
 gem 'sdoc', group: :doc
+gem 'bootstrap-sass'
 
 group :test do
   gem 'selenium-webdriver'
