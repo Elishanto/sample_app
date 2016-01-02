@@ -11,6 +11,7 @@ gem 'jbuilder'
 gem 'sdoc', group: :doc
 gem 'bootstrap-sass'
 gem 'bcrypt'
+gem 'factory_girl_rails'
 
 group :test do
   gem 'selenium-webdriver'
