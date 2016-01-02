@@ -8,7 +8,11 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    if signed_in?
+      redirect_to root_url
+    else
+      @user = User.new
+    end
   end
 
   def show
@@ -16,13 +20,17 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      sign_in @user
-      flash[:success] = 'Welcome to the Sample App!'
-      redirect_to @user
+    if signed_in?
+      redirect_to root_url
     else
-      render 'new'
+      @user = User.new(user_params)
+      if @user.save
+        sign_in @user
+        flash[:success] = 'Welcome to the Sample App!'
+        redirect_to @user
+      else
+        render 'new'
+      end
     end
   end
 
@@ -30,13 +38,17 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
-    flash[:success] = 'User deleted.'
-    redirect_to users_url
+    if User.find(params[:id]) != current_user
+      User.find(params[:id]).destroy
+      flash[:success] = 'User deleted.'
+      redirect_to users_url
+    else
+      redirect_to users_url
+    end
   end
 
   def update
-    if @user.update_attributes(user_params)
+    if !user_params.has_key?(:admin) && @user.update_attributes(user_params)
       flash[:success] = 'Profile updated'
       redirect_to @user
     else
@@ -47,7 +59,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
   end
 
   def signed_in_user
@@ -63,6 +75,6 @@ class UsersController < ApplicationController
   end
 
   def admin_user
-    redirect_to root_url unless current_user.admin?
+    redirect_to root_url unless User.find(params[:id]).admin?
   end
 end
