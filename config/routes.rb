@@ -9,5 +9,10 @@ Rails.application.routes.draw do
 
   get '/signup', to: 'users#new'
 
+  get '/signin', to: 'sessions#new'
+  delete '/signout', to: 'sessions#destroy'
+
   resources :users
+
+  resources :sessions, only: [:new, :create, :destroy]
 end

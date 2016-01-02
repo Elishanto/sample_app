@@ -16,6 +16,8 @@ gem 'factory_girl_rails'
 group :test do
   gem 'selenium-webdriver'
   gem 'capybara'
+  gem 'cucumber-rails', require: false
+  gem 'database_cleaner', github: 'bmabey/database_cleaner'
 end
 
 group :production do
