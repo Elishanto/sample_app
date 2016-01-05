@@ -14,12 +14,15 @@ gem 'bcrypt'
 gem 'factory_girl_rails'
 gem 'faker'
 gem 'kaminari'
+gem 'rspec-its'
 
 group :test do
   gem 'selenium-webdriver'
   gem 'capybara'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner', github: 'bmabey/database_cleaner'
+  gem 'debase'
+  gem 'ruby-debug-ide'
 end
 
 group :production do
