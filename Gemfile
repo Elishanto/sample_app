@@ -15,6 +15,7 @@ gem 'factory_girl_rails'
 gem 'faker'
 gem 'kaminari'
 gem 'rspec-its'
+gem 'puma'
 
 group :test do
   gem 'selenium-webdriver'
