@@ -7,3 +7,4 @@ notifications:
   email: false
 sudo: false
 cache: bundler
+before_script: 'bundle exec rake db:migrate'
